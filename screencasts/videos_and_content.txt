@@ -1,0 +1,5 @@
+Orignal application: the application made by gpt engineer
+Code Augmentation 1: Usig co pilot to add addition functionalities to the application
+Code refactoring: Refactoring the code using co pilot
+Testing: Generating Unit tests using co pilot
+Final application: : How the final application looks and behaves
