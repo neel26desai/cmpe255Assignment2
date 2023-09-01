@@ -15,7 +15,7 @@ Inside translator>workspace
 To run the application:
 1. Need to have Python >= 3.10
 2. Have OPENAI_API_KEY configured in environment variable
-3. Run the file  translator>workspace>run.sh
+3. Run the file  translator>workspace>run.sh  (note the commands are for running the code in an linux environment)
    
             
    
