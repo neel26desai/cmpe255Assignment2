@@ -2,7 +2,7 @@ The application will be built using Python and the Tkinter library for the GUI. 
 
 The core classes, functions, and methods that will be necessary are:
 
-1. `TranslatorModel`: This class will be responsible for handling the translation logic. It will have a method `translate_text` that will use the OpenAI API to translate the input text from English to Gujarati.
+1. `TranslatorModel`: This class will be responsible for handling the translation logic. It will have a method `translate_text` that will use the OpenAI API to translate the input text from English to French.
 
 2. `TranslatorView`: This class will be responsible for the GUI of the application. It will have methods to create the input and output text boxes and to update the output text box with the translated text.
 
