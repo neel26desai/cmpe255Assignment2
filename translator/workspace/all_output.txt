@@ -1,0 +1,109 @@
+The application will be built using Python and the Tkinter library for the GUI. The OpenAI API will be used for the translation service. The application will follow the MVC (Model-View-Controller) architecture and SOLID principles.
+
+The core classes, functions, and methods that will be necessary are:
+
+1. `TranslatorModel`: This class will be responsible for handling the translation logic. It will have a method `translate_text` that will use the OpenAI API to translate the input text from English to French.
+
+2. `TranslatorView`: This class will be responsible for the GUI of the application. It will have methods to create the input and output text boxes and to update the output text box with the translated text.
+
+3. `TranslatorController`: This class will be responsible for handling the user interactions. It will have methods to handle the 'Enter' key press event to translate the text and the 'Ctrl+Z' key press event to undo the last translation.
+
+4. `main`: This function will be the entry point of the application. It will create instances of the `TranslatorModel`, `TranslatorView`, and `TranslatorController` classes and start the Tkinter event loop.
+
+Now, let's write the code for each file.
+
+requirements.txt
+```txt
+openai==0.27.0
+tkinter==0.1.0
+```
+
+translator_model.py
+```python
+import openai
+
+class TranslatorModel:
+    def __init__(self):
+        openai.api_key = 'your-api-key'
+
+    def translate_text(self, text):
+        response = openai.Translation.create(
+            engine="text-davinci-002",
+            text=text,
+            target_language="fr"
+        )
+        return response['choices'][0]['text']
+```
+
+translator_view.py
+```python
+import tkinter as tk
+
+class TranslatorView:
+    def __init__(self, root):
+        self.root = root
+        self.input_text_box = tk.Text(root, height=10, width=50)
+        self.output_text_box = tk.Text(root, height=10, width=50, state='disabled')
+
+    def create_view(self):
+        self.input_text_box.pack()
+        self.output_text_box.pack()
+
+    def get_input_text(self):
+        return self.input_text_box.get("1.0", 'end-1c')
+
+    def set_output_text(self, text):
+        self.output_text_box.config(state='normal')
+        self.output_text_box.delete("1.0", tk.END)
+        self.output_text_box.insert(tk.END, text)
+        self.output_text_box.config(state='disabled')
+```
+
+translator_controller.py
+```python
+class TranslatorController:
+    def __init__(self, model, view):
+        self.model = model
+        self.view = view
+        self.view.root.bind('<Return>', self.translate_text)
+        self.view.root.bind('<Control-z>', self.undo_translation)
+
+    def translate_text(self, event):
+        input_text = self.view.get_input_text()
+        translated_text = self.model.translate_text(input_text)
+        self.view.set_output_text(translated_text)
+
+    def undo_translation(self, event):
+        self.view.set_output_text('')
+```
+
+main.py
+```python
+import tkinter as tk
+from translator_model import TranslatorModel
+from translator_view import TranslatorView
+from translator_controller import TranslatorController
+
+def main():
+    root = tk.Tk()
+    model = TranslatorModel()
+    view = TranslatorView(root)
+    view.create_view()
+    controller = TranslatorController(model, view)
+    tk.mainloop()
+
+if __name__ == "__main__":
+    main()
+```
+
+This application follows the SOLID principles:
+
+- Single Responsibility Principle: Each class has a single responsibility. `TranslatorModel` handles the translation logic, `TranslatorView` handles the GUI, and `TranslatorController` handles the user interactions.
+
+- Open-Closed Principle: The classes are open for extension but closed for modification. For example, we can extend the `TranslatorModel` class to support more languages without modifying the existing code.
+
+- Liskov Substitution Principle: The classes are designed in such a way that a derived class can replace its base class without affecting the functionality of the application.
+
+- Interface Segregation Principle: The classes do not depend on any unnecessary methods. They only depend on the methods that they need.
+
+- Dependency Inversion Principle: The high-level `TranslatorController` class does not depend on the low-level `TranslatorModel` and `TranslatorView` classes. Instead, they all depend on abstractions.

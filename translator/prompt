@@ -1,0 +1,1 @@
+We are writing an app that can translate text from English to Gujarati, it will have one text box where the user will enter input and the output will be displayed in a second textbox, right below the first one ,the application should be build following SOLID principals, MVC components split in separate files. Keyboard control.
