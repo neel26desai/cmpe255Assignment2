@@ -18,5 +18,7 @@ To run the application:
 3. Run the file  translator>workspace>run.sh  (note the commands are for running the code in an linux environment)
    
             
-   
-   
+#Assignment 1:
+Problem Statement: Using ChatGPT to perform data analysis and EDA task on any data set from Kaggle.
+Full Transcript: https://docs.google.com/document/d/e/2PACX-1vTGX4AB5aHfu1f-H6hl-5e_VWBUfZ6jDgLar1qBfJWPXScvcNuuSgjW0CjB6EiUOn3ZQHtAraON5Id0/pub
+Article: https://medium.com/@neel26d/collaborative-analysis-with-chatgpt-a-machine-learning-approach-to-heart-disease-prediction-9d53bc7bfd2e
